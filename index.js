@@ -25,8 +25,6 @@ app.get('/api', (request, response)=> {
 
 //POST Method
 app.post('/api', (request, response) => {
-    //console.log('I got a request!');
-    //console.log(request.body);
     const data = request.body;
     const timestamp = Date.now();
     data.timestamp = timestamp;
@@ -35,12 +33,9 @@ app.post('/api', (request, response) => {
 });
 
 app.get('/weather/:latlon', async (request, response) => {
-    //console.log(request.params);
     const latlon = request.params.latlon.split(',');
-    //console.log(latlon);
     const lat = latlon[0];
-    const lon = latlon[1];
-    //console.log(lat, lon); 
+    const lon = latlon[1]; 
     const api_key = process.env.API_KEY;
     const weather_url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${api_key}&units=metric`;
     const weather_response = await fetch(weather_url);
@@ -56,6 +51,3 @@ app.get('/weather/:latlon', async (request, response) => {
     };
     response.json(data);
 })
-
-
-//line 111 "type": "module",
